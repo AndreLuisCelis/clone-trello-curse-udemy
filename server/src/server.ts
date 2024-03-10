@@ -101,7 +101,7 @@ io.use(async (socket: Socket, next) => {
   });
 });
 
-mongoose.connect("mongodb://0.0.0.0:27017/eltrello").then(() => {
+mongoose.connect("mongodb+srv://andreluiscelis:501782@cluster0.qkqvv8i.mongodb.net/?retryWrites=true&w=majority&appName=eltrello/eltrello").then(() => {
   console.log("connected to mongodb");
   httpServer.listen(4001, () => {
     console.log(`API is listening on port 4001`);
