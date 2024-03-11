@@ -14,6 +14,8 @@ import cors from "cors";
 import { SocketEventsEnum } from "./types/socketEvents.enum";
 import { secret } from "./config";
 import User from "./models/user";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
@@ -101,7 +103,8 @@ io.use(async (socket: Socket, next) => {
   });
 });
 
-mongoose.connect("mongodb+srv://andreluiscelis:501782@cluster0.qkqvv8i.mongodb.net/?retryWrites=true&w=majority&appName=eltrello/eltrello").then(() => {
+if(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("connected to mongodb");
   httpServer.listen(4001, () => {
     console.log(`API is listening on port 4001`);
